@@ -1,0 +1,53 @@
+# Binaries
+goldbach_pmin
+generate_primes
+pmin_segmented
+pmin_max_1B
+pmin_dist
+pmin357
+pmin3_check
+pmin_max_by_range
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Large/temp files
+small_primes.bin
+*.tmp
+*.log
+*.aux
+*.out
+
+# LibreOffice locks
+.~lock.*
+
+# Old versions - keep only main paper
+goldbach_arxiv.*
+goldbach_v2.*
+goldbach_casual.*
+goldbach_formal_paper.*
+goldbach_modular.*
+goldbach_paper.*
+goldbach_pmin_exploration.*
+goldbach_*.xlsx
+
+# Python scripts (not needed for simulation)
+*.py
+
+# Extra data/figures
+fig*.png
+pmin_cumulative.png
+pmin_actual_fit.png
+pmin_extrapolation.png
+record_spacing.png
+prime_gap_analysis.png
+
+# Misc
+feedback.txt
+roundtable*.md
+roundtable*.sh
+max_pmin_10e12.csv
+max_pmin_by_log.csv
+pmin_records.csv
