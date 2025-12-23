@@ -32,7 +32,7 @@ For example:
 - pmin(30) = 7, since 30 = 7 + 23
 - pmin(98) = 19, since smaller odd primes 3, 5, 7, 11, 13, 17 all fail
 
-The function pmin(N) measures the "difficulty" of finding a Goldbach decomposition. If pmin is bounded by a slow-growing function of N, then Goldbach decompositions are computationally easy to find.
+The function pmin(N) measures the "difficulty" of finding a Goldbach decomposition. If pmin is bounded by a slow-growing function of N, then Goldbach decompositions are computationally inexpensive to find.
 
 **Scope and Limitations.** This paper presents computational findings, not mathematical proofs. Our formulas are empirical fits to data up to 10^9. Whether these patterns persist to infinity remains an open question.
 
@@ -221,7 +221,7 @@ This does not constitute a proof, but it quantifies precisely how dramatic a dev
 
 | # | Finding | Formula/Result |
 |---|---------|----------------|
-| 1 | Most N are easy | 99.999% have pmin <= 631 (114 odd primes) |
+| 1 | Most N are light | 99.999% have pmin <= 631 (114 odd primes) |
 | 2 | Maximum growth | max pmin ~ 0.2 ln(N)^3 |
 | 3 | Why cubic | Extreme value of ln(N)^2 typical values |
 | 4 | Comparison | pmin grows as ln^3, prime gaps as ln^2 |
