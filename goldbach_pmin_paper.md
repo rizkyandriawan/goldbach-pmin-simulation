@@ -75,18 +75,16 @@ Note: The fast runtime is achieved because (1) the sieve provides O(1) primality
 
 Our first finding concerns the distribution of pmin across all even integers.
 
-| pmin value | Percentage of even N |
-|------------|---------------------|
-| 3          | 11.5%               |
-| 5          | 10.6%               |
-| 7          | 9.8%                |
-| <= 7       | 31.9%               |
-| <= 31      | 71.9%               |
-| <= 103     | 95.1%               |
+| Percentile | pmin <= | Odd primes to test |
+|------------|--------|-------------------|
+| 95%        | 103    | 26                |
+| 99%        | 191    | 42                |
+| 99.9%      | 331    | 66                |
+| 99.999%    | 631    | 114               |
 
-**Finding 1.** Approximately 95% of even integers up to 10^9 have pmin <= 103.
+**Finding 1.** 99.999% of even integers up to 10^9 have pmin <= 631.
 
-This indicates that for the vast majority of even integers, a Goldbach decomposition can be found by testing only the first 27 odd primes.
+This means virtually all Goldbach decompositions can be found by testing only the first 114 odd primes. The remaining 0.001% (about 5,000 cases out of 500 million) require testing more primes, with the worst case needing 282 primes.
 
 ### 3.2 Maximum pmin: The Main Result
 
@@ -177,8 +175,8 @@ A naive approach to finding Goldbach pairs might start from the middle: test whe
 - The search space is unbounded in the worst case
 
 Our findings demonstrate that **searching from the small end is far more efficient**. By testing p = 3, 5, 7, 11, ... in sequence:
-- 95% of even N find a valid pair within the first 27 primes (p <= 103)
-- The worst case up to 10^9 requires only 282 primes (p <= 1,789)
+- 99.999% of even N find a valid pair within the first 114 odd primes (p <= 631)
+- The worst case up to 10^9 requires only 282 odd primes (p <= 1,789)
 - The search is guaranteed to terminate quickly
 
 This transforms Goldbach verification from a potentially expensive search into a bounded, predictable computation. For any N up to one billion, we are guaranteed to find a valid pair within a short reach of the prime sequence.
@@ -223,7 +221,7 @@ This does not constitute a proof, but it quantifies precisely how dramatic a dev
 
 | # | Finding | Formula/Result |
 |---|---------|----------------|
-| 1 | Most N are easy | 95% have pmin <= 103 |
+| 1 | Most N are easy | 99.999% have pmin <= 631 (114 odd primes) |
 | 2 | Maximum growth | max pmin ~ 0.2 ln(N)^3 |
 | 3 | Why cubic | Extreme value of ln(N)^2 typical values |
 | 4 | Comparison | pmin grows as ln^3, prime gaps as ln^2 |
