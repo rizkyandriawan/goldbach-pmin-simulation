@@ -133,7 +133,7 @@ For N = p + q to be a valid Goldbach decomposition, both p and N - p must be pri
 P(valid pair) ~ (1/ln(N)) x (1/ln(N)) = 1/ln(N)^2
 ```
 
-Note: This independence assumption is a simplification. The actual probability involves correction factors (the Hardy-Littlewood singular series) that depend on N's divisibility by small primes. However, these corrections affect the constant factor, not the growth exponent.
+Note: This independence assumption is a simplification. The actual probability involves correction factors (the Hardy-Littlewood singular series) that depend on N's divisibility by small primes. While the independence assumption is known to be imperfect due to arithmetic correlations, it is sufficient for explaining the observed growth exponent rather than the precise constant.
 
 **Step 3: Expected Search Depth.**
 If each candidate p has probability ~1/ln(N)^2 of success, then the expected number of trials until success is ~ln(N)^2. This gives the typical value of pmin:
@@ -179,7 +179,7 @@ Our findings demonstrate that **searching from the small end is far more efficie
 - The worst case up to 10^9 requires only 282 odd primes (p <= 1,789)
 - The search empirically terminates quickly
 
-This transforms Goldbach verification from a potentially expensive search into a bounded, predictable computation. For any N up to one billion, we are guaranteed to find a valid pair within a short reach of the prime sequence.
+This transforms Goldbach verification from a potentially expensive search into a bounded, predictable computation. For all N <= 10^9, we empirically find a valid pair within a short reach of the prime sequence.
 
 **Extrapolation:** If the formula max pmin ~ 0.2 ln(N)^3 continues to hold:
 - At N = 10^12: max pmin ~ 4,200 (testing ~600 primes)
@@ -271,6 +271,19 @@ N                pmin    log10(N)
 
 ---
 
+## Code Availability
+
+All source code, raw data, and computational artifacts for this study are publicly available at:
+
+**https://github.com/rizkyandriawan/goldbach-pmin-simulation**
+
+The repository includes:
+- C implementation of the Sieve of Eratosthenes and pmin computation
+- Complete list of record-breaking (N, pmin) pairs
+- Scripts for reproducing all reported statistics
+
+---
+
 ## References
 
 - Hardy, G.H. & Littlewood, J.E. (1923). "Some problems of 'Partitio numerorum'; III: On the expression of a number as a sum of primes." Acta Mathematica, 44, 1-70.
@@ -279,4 +292,4 @@ N                pmin    log10(N)
 
 ---
 
-*Computed December 2025. Source code available at: https://github.com/rizkyandriawan/goldbach-pmin-simulation*
+*Computed December 2025.*
