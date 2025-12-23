@@ -10,7 +10,7 @@
 
 ## Abstract
 
-For any even integer N > 2, Goldbach's conjecture asserts the existence of primes p and q such that N = p + q. We define pmin(N) as the smallest such prime p. Through exhaustive computation of pmin(N) for all even integers up to one billion, we present empirical evidence that the maximum value of pmin grows as approximately 0.2 ln(N)^3. We provide a heuristic derivation of this cubic logarithmic growth using extreme value theory and the Prime Number Theorem.
+For any even integer N > 2, Goldbach's conjecture asserts the existence of primes p and q such that N = p + q. We define pmin(N) as the smallest such prime p. Through exhaustive computation of pmin(N) for all even integers up to one billion, we present empirical evidence that the maximum value of pmin grows as O(ln(N)^3). We provide a heuristic derivation of this cubic logarithmic growth using extreme value theory and the Prime Number Theorem.
 
 **Keywords:** Goldbach conjecture, prime pairs, computational number theory, extreme value statistics
 
@@ -177,7 +177,7 @@ A naive approach to finding Goldbach pairs might start from the middle: test whe
 Our findings demonstrate that **searching from the small end is far more efficient**. By testing p = 3, 5, 7, 11, ... in sequence:
 - 99.999% of even N find a valid pair within the first 114 odd primes (p <= 631)
 - The worst case up to 10^9 requires only 282 odd primes (p <= 1,789)
-- The search is guaranteed to terminate quickly
+- The search empirically terminates quickly
 
 This transforms Goldbach verification from a potentially expensive search into a bounded, predictable computation. For any N up to one billion, we are guaranteed to find a valid pair within a short reach of the prime sequence.
 
@@ -222,7 +222,7 @@ This does not constitute a proof, but it quantifies precisely how dramatic a dev
 | # | Finding | Formula/Result |
 |---|---------|----------------|
 | 1 | Most N are light | 99.999% have pmin <= 631 (114 odd primes) |
-| 2 | Maximum growth | max pmin ~ 0.2 ln(N)^3 |
+| 2 | Maximum growth | max pmin = O(ln(N)^3) |
 | 3 | Why cubic | Extreme value of ln(N)^2 typical values |
 | 4 | Comparison | pmin grows as ln^3, prime gaps as ln^2 |
 
