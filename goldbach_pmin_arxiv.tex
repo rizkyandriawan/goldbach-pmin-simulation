@@ -31,7 +31,7 @@ A Computational Study of $p_{\min}(N)$ for Even Integers up to $10^9$}
 \maketitle
 
 \begin{abstract}
-For any even integer $N > 2$, Goldbach's conjecture asserts the existence of primes $p$ and $q$ such that $N = p + q$. We define $p_{\min}(N)$ as the smallest such prime $p$. Through exhaustive computation of $p_{\min}(N)$ for all even integers up to one billion, we present empirical evidence that the maximum value of $p_{\min}$ grows as $O(\ln(N)^3)$. This result provides a theoretical framework for the ``minimal partition'' strategy employed by Oliveira e Silva et al.\ (2014) to verify Goldbach's conjecture up to $4 \times 10^{18}$---the largest verification to date. Our analysis explains why this edge-first search is so efficient and suggests that verification can be extended to arbitrarily large $N$ without significant increase in per-number computational cost.
+For any even integer $N > 2$, Goldbach's conjecture asserts the existence of primes $p$ and $q$ such that $N = p + q$. We define $p_{\min}(N)$ as the smallest such prime $p$. Through exhaustive computation of $p_{\min}(N)$ for all even integers up to one billion, we present empirical evidence that the maximum value of $p_{\min}$ grows as $O(\ln(N)^3)$. This result provides empirical evidence supporting the ``minimal partition'' strategy employed by Oliveira e Silva et al.\ (2014) to verify Goldbach's conjecture up to $4 \times 10^{18}$---the largest verification to date. Our analysis explains why this edge-first search is so efficient and suggests that verification can be extended to arbitrarily large $N$ without significant increase in per-number computational cost.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Goldbach conjecture, prime pairs, computational number theory, extreme value statistics
@@ -42,7 +42,7 @@ Goldbach's conjecture (1742) states that every even integer greater than 2 can b
 
 A critical but often overlooked aspect of this verification is the \textit{search strategy} employed. Rather than searching for Goldbach pairs starting from $N/2$ (which would require examining an unbounded number of candidates), Oliveira e Silva et al.\ used a \textit{minimal partition strategy}: for each even $N$, they searched for the smallest prime $p$ such that $N - p$ is also prime. This edge-first approach proved remarkably efficient in practice, but the computational number theory literature has not provided a theoretical explanation for \textit{why} this strategy works so well.
 
-In this paper, we address precisely this question: \textbf{How small can the smaller prime in a Goldbach partition be?} We provide both empirical evidence and a heuristic theoretical framework showing that the minimal Goldbach prime grows only as $O(\ln(N)^3)$---a strikingly slow growth rate that explains the efficiency of edge-first search strategies.
+In this paper, we address precisely this question: \textbf{How small can the smaller prime in a Goldbach partition be?} We provide empirical evidence and a heuristic argument suggesting that the minimal Goldbach prime grows only as $O(\ln(N)^3)$---a strikingly slow growth rate that would explain the efficiency of edge-first search strategies.
 
 \begin{definition}
 For an even integer $N > 2$, we define
@@ -199,7 +199,7 @@ Only the cubic ratio remains stable across the entire range, confirming $\ln(N)^
 
 \paragraph{Note on statistical methodology.} The ratio stability analysis above constitutes our primary evidence for the $\ln(N)^3$ growth rate. Traditional confidence intervals are not applicable here, as our dataset is exhaustive (all 500 million even integers up to $10^9$), not a statistical sample. The constant 0.2 is a descriptive fit to complete data, not an estimate with sampling error. The relevant question is not ``how confident are we in 0.2?'' but rather ``does this pattern persist beyond $10^9$?''---which remains open.
 
-\subsection{Theoretical Basis for Cubic Growth}
+\subsection{Heuristic Argument for Cubic Growth}
 
 The $\ln(N)^3$ growth rate is not coincidental. We provide a heuristic derivation based on extreme value theory.
 
@@ -270,7 +270,7 @@ Our findings demonstrate that \textbf{searching from the small end is far more e
     \item The search empirically terminates quickly
 \end{itemize}
 
-This is precisely the strategy employed by Oliveira e Silva et al.\ \cite{oliveira2014} to verify Goldbach's conjecture up to $4 \times 10^{18}$. Their implementation searched for the ``minimal Goldbach partition''---exactly what we call $p_{\min}(N)$---using highly optimized segmented sieves. Our analysis provides a theoretical framework explaining \textit{why} this approach is so efficient: because $p_{\min}$ grows only as $O(\ln(N)^3)$, the search terminates after testing a vanishingly small fraction of candidates.
+This is precisely the strategy employed by Oliveira e Silva et al.\ \cite{oliveira2014} to verify Goldbach's conjecture up to $4 \times 10^{18}$. Their implementation searched for the ``minimal Goldbach partition''---exactly what we call $p_{\min}(N)$---using highly optimized segmented sieves. Our analysis provides empirical evidence explaining \textit{why} this approach is so efficient: if, as our data suggests, $p_{\min}$ grows only as $O(\ln(N)^3)$, then the search terminates after testing a vanishingly small fraction of candidates.
 
 \paragraph{Extrapolation.} If the formula $\max p_{\min} \sim 0.2 \ln(N)^3$ continues to hold:
 \begin{itemize}[nosep]
@@ -309,14 +309,14 @@ This does not constitute a proof, but it quantifies precisely how dramatic a dev
 
 \section{Conclusion}
 
-We have established that the minimal Goldbach prime $p_{\min}(N)$ grows as $O(\ln(N)^3)$, providing a theoretical foundation for the edge-first search strategy that enabled Oliveira e Silva et al.\ \cite{oliveira2014} to verify Goldbach's conjecture up to $4 \times 10^{18}$.
+We have presented empirical evidence that the minimal Goldbach prime $p_{\min}(N)$ grows as $O(\ln(N)^3)$, providing a quantitative explanation for the edge-first search strategy that enabled Oliveira e Silva et al.\ \cite{oliveira2014} to verify Goldbach's conjecture up to $4 \times 10^{18}$.
 
 The key insight is that the computational cost of Goldbach verification scales \textit{logarithmically}, not linearly, with $N$. Even increasing the verification range by a factor of one million---from $10^{18}$ to $10^{24}$---would only increase the worst-case search depth from approximately 1,700 primes to approximately 2,500 primes. This suggests that \textbf{Goldbach verification can be extended to arbitrarily large scales without significant increase in per-number computational cost}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{fig_scaling.pdf}
-\caption{Predicted maximum $p_{\min}$ at various scales, extrapolated using the formula $0.2 \times \ln(N)^3$. The key observation is that $p_{\min}$ grows only logarithmically with $N$, so the \textit{number} of primes to test increases slowly even as $N$ increases by many orders of magnitude.}
+\caption{Predicted maximum $p_{\min}$ at various scales, assuming the observed pattern $\sim 0.2 \times \ln(N)^3$ continues to hold. If this extrapolation is valid, the \textit{number} of primes to test increases slowly even as $N$ increases by many orders of magnitude.}
 \label{fig:scaling}
 \end{figure}
 
@@ -333,7 +333,7 @@ $10^{100}$ & $\sim$2,400,000 & $\sim$180,000 \\
 \end{tabular}
 \end{center}
 
-Even at the astronomical scale of $10^{100}$ (a googol), our formula predicts that each even number can be verified by testing fewer than 200,000 small primes. However, it is important to note that primality testing of 100-digit numbers (using probabilistic tests like Miller-Rabin) requires significant computation---approximately a few hours per number on modern hardware. Nevertheless, this remains \textit{constant} with respect to $N$: verifying a single even integer near $10^{100}$ takes the same time whether $N$ is the first or last in some range. The limiting factor for extending Goldbach verification is the sheer count of numbers to verify, not an explosion in per-number complexity.
+If the observed growth pattern persists, even at the astronomical scale of $10^{100}$ (a googol), our formula would predict that each even number can be verified by testing fewer than 200,000 small primes. However, it is important to note that primality testing of 100-digit numbers (using probabilistic tests like Miller-Rabin) requires significant computation---approximately a few hours per number on modern hardware. Nevertheless, given that our empirical formula holds, this cost remains \textit{constant} with respect to $N$: verifying a single even integer near $10^{100}$ takes the same time whether $N$ is the first or last in some range. The limiting factor for extending Goldbach verification would be the sheer count of numbers to verify, not an explosion in per-number complexity.
 
 \section{Summary of Findings}
 

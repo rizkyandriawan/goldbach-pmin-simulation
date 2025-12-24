@@ -10,7 +10,7 @@
 
 ## Abstract
 
-For any even integer N > 2, Goldbach's conjecture asserts the existence of primes p and q such that N = p + q. We define pmin(N) as the smallest such prime p. Through exhaustive computation of pmin(N) for all even integers up to one billion, we present empirical evidence that the maximum value of pmin grows as O(ln(N)^3). This result provides a theoretical framework for the "minimal partition" strategy employed by Oliveira e Silva et al. (2014) to verify Goldbach's conjecture up to 4 x 10^18—the largest verification to date. Our analysis explains why this edge-first search is so efficient and suggests that verification can be extended to arbitrarily large N without significant increase in per-number computational cost.
+For any even integer N > 2, Goldbach's conjecture asserts the existence of primes p and q such that N = p + q. We define pmin(N) as the smallest such prime p. Through exhaustive computation of pmin(N) for all even integers up to one billion, we present empirical evidence that the maximum value of pmin grows as O(ln(N)^3). This result provides empirical evidence supporting the "minimal partition" strategy employed by Oliveira e Silva et al. (2014) to verify Goldbach's conjecture up to 4 x 10^18—the largest verification to date. Our analysis explains why this edge-first search is so efficient and suggests that verification can be extended to arbitrarily large N without significant increase in per-number computational cost.
 
 **Keywords:** Goldbach conjecture, prime pairs, computational number theory, extreme value statistics
 
@@ -120,7 +120,7 @@ Only the cubic ratio remains stable across the entire range, confirming ln(N)^3 
 
 **Note on statistical methodology:** The ratio stability analysis above constitutes our primary evidence for the ln(N)^3 growth rate. Traditional confidence intervals are not applicable here, as our dataset is exhaustive (all 500 million even integers up to 10^9), not a statistical sample. The constant 0.2 is a descriptive fit to complete data, not an estimate with sampling error. The relevant question is not "how confident are we in 0.2?" but rather "does this pattern persist beyond 10^9?"—which remains open.
 
-### 3.3 Theoretical Basis for Cubic Growth
+### 3.3 Heuristic Argument for Cubic Growth
 
 The ln(N)^3 growth rate is not coincidental. We provide a heuristic derivation based on extreme value theory.
 
@@ -181,7 +181,7 @@ Our findings demonstrate that **searching from the small end is far more efficie
 - The worst case up to 10^9 requires only 282 odd primes (p <= 1,789)
 - The search empirically terminates quickly
 
-This is precisely the strategy employed by Oliveira e Silva et al. (2014) to verify Goldbach's conjecture up to 4 x 10^18. Their implementation searched for the "minimal Goldbach partition"—exactly what we call pmin(N)—using highly optimized segmented sieves. Our analysis provides a theoretical framework explaining *why* this approach is so efficient: because pmin grows only as O(ln(N)^3), the search terminates after testing a vanishingly small fraction of candidates.
+This is precisely the strategy employed by Oliveira e Silva et al. (2014) to verify Goldbach's conjecture up to 4 x 10^18. Their implementation searched for the "minimal Goldbach partition"—exactly what we call pmin(N)—using highly optimized segmented sieves. Our analysis provides empirical evidence explaining *why* this approach is so efficient: if, as our data suggests, pmin grows only as O(ln(N)^3), then the search terminates after testing a vanishingly small fraction of candidates.
 
 **Extrapolation:** If the formula max pmin ~ 0.2 ln(N)^3 continues to hold:
 - At N = 10^12: max pmin ~ 4,200 (testing ~600 primes)
@@ -221,7 +221,7 @@ This does not constitute a proof, but it quantifies precisely how dramatic a dev
 
 ## 6. Conclusion
 
-We have established that the minimal Goldbach prime pmin(N) grows as O(ln(N)^3), providing a theoretical foundation for the edge-first search strategy that enabled Oliveira e Silva et al. (2014) to verify Goldbach's conjecture up to 4 x 10^18.
+We have presented empirical evidence that the minimal Goldbach prime pmin(N) grows as O(ln(N)^3), providing a quantitative explanation for the edge-first search strategy that enabled Oliveira e Silva et al. (2014) to verify Goldbach's conjecture up to 4 x 10^18.
 
 The key insight is that the computational cost of Goldbach verification scales *logarithmically*, not linearly, with N. Even increasing the verification range by a factor of one million—from 10^18 to 10^24—would only increase the worst-case search depth from approximately 1,700 primes to approximately 2,500 primes. This suggests that **Goldbach verification can be extended to arbitrarily large scales without significant increase in per-number computational cost**.
 
@@ -232,7 +232,7 @@ The key insight is that the computational cost of Goldbach verification scales *
 | 10^30 | ~38,000 | ~4,000 |
 | 10^100 | ~2,400,000 | ~180,000 |
 
-Even at the astronomical scale of 10^100 (a googol), our formula predicts that each even number can be verified by testing fewer than 200,000 small primes. However, primality testing of 100-digit numbers (using Miller-Rabin) requires significant computation—approximately a few hours per number on modern hardware. Nevertheless, this remains *constant* with respect to N: verifying any single even integer near 10^100 takes the same time. The limiting factor for extending Goldbach verification is the sheer count of numbers to verify, not an explosion in per-number complexity.
+If the observed growth pattern persists, even at the astronomical scale of 10^100 (a googol), our formula would predict that each even number can be verified by testing fewer than 200,000 small primes. However, primality testing of 100-digit numbers (using Miller-Rabin) requires significant computation—approximately a few hours per number on modern hardware. Nevertheless, given that our empirical formula holds, this cost remains *constant* with respect to N: verifying any single even integer near 10^100 takes the same time. The limiting factor for extending Goldbach verification would be the sheer count of numbers to verify, not an explosion in per-number complexity.
 
 ---
 
