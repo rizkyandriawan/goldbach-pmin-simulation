@@ -232,7 +232,7 @@ The key insight is that the computational cost of Goldbach verification scales *
 | 10^30 | ~38,000 | ~4,000 |
 | 10^100 | ~2,400,000 | ~180,000 |
 
-Even at the astronomical scale of 10^100 (a googol), our formula predicts that each even number can be verified by testing fewer than 200,000 small primes—a computation that takes microseconds on modern hardware. The limiting factor for extending Goldbach verification is not computational complexity per number, but rather the sheer count of numbers to verify.
+Even at the astronomical scale of 10^100 (a googol), our formula predicts that each even number can be verified by testing fewer than 200,000 small primes. However, primality testing of 100-digit numbers (using Miller-Rabin) requires significant computation—approximately a few hours per number on modern hardware. Nevertheless, this remains *constant* with respect to N: verifying any single even integer near 10^100 takes the same time. The limiting factor for extending Goldbach verification is the sheer count of numbers to verify, not an explosion in per-number complexity.
 
 ---
 
